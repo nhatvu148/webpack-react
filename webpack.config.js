@@ -1,12 +1,18 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
   entry: "./index.js",
   output: {
-    path: path.resolve(__dirname, "public"),
-    filename: "main.js",
+    filename: "main.[contenthash].js",
+    path: path.resolve(__dirname, "dist"),
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/template.html",
+    }),
+  ],
   target: "node",
   devServer: {
     port: "3300",
@@ -21,9 +27,12 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
+        use: ["babel-loader"],
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },

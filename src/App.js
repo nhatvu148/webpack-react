@@ -1,7 +1,8 @@
 import React from "react";
+import "./main.css";
 
 const App = () => {
-  return <h1>Hello Webpack React!!!</h1>;
+  return <h1>Hello Webpack a React!!!</h1>;
 };
 
 export default App;
